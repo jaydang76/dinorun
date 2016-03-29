@@ -26,6 +26,7 @@ public class MenuStage extends Stage {
     public MenuStage(Game game) {
         this.game = game;
         setupBackground();
+        setupLogo();
         setupStartButton();
     }
 
@@ -35,13 +36,23 @@ public class MenuStage extends Stage {
         addActor(actor);
     }
 
+    private void setupLogo() {
+        TextureRegion logo = new TextureRegion(new Texture(Gdx.files.internal(Constants.LOGO_IMAGE_PATH)));
+        Image actor = new Image(logo);
+        actor.setHeight(Constants.LOGO_HEIGHT);
+        actor.setWidth(Constants.LOGO_WIDTH);
+        actor.setPosition(Gdx.graphics.getWidth()/4 , Gdx.graphics.getHeight()/2);
+        addActor(actor);
+    }
+
     private void setupStartButton() {
         TextButton startGameButton = new TextButton("Start game", getSkin() );
-        startGameButton.setPosition(Gdx.graphics.getWidth()/2 - Gdx.graphics.getWidth()/8 , Gdx.graphics.getHeight()/2);
+        startGameButton.setPosition(Gdx.graphics.getWidth()/2 - Gdx.graphics.getWidth()/8 , Gdx.graphics.getHeight()/3);
         startGameButton.addListener(new ClickListener() {
             @Override public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                     game.setScreen(new GameScreen(game));
+                dispose();
             }
         });
         addActor(startGameButton);

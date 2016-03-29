@@ -123,6 +123,7 @@ public class GameStage extends Stage implements ContactListener{
 
         if (bodies.size == 2 && runner.isHit() == true) {
             game.setScreen(new MenuScreen(game));
+            dispose();
         }
 
         // Fixed timestep
